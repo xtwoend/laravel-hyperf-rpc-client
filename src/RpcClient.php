@@ -62,7 +62,7 @@ class RpcClient
 			}catch (\Exception $e){
 				$this->createClient();
 			}
-			if(!empty($data) || $i>3){
+			if(!empty($data) || $i > 3){
 				break;
 			}
 			$i++;
@@ -70,11 +70,10 @@ class RpcClient
 
 		if(!empty($data)){
 			$dataResult = (array) json_decode($data,true);
-        
-            if(isset($dataResult['result'])){
+            if(array_key_exists('result', $dataResult)){
 			    return $this->success('ok', $dataResult['result']);
             }elseif(isset($dataResult['error'])){
-                return $this->error($dataResult['error']['code'], $dataResult['error']['message'], $dataResult['error']);
+                return $this->error($dataResult['error']['code'], $dataResult['error']['message'], $dataResult['error']['data']);
             }
 		}
 
@@ -101,7 +100,7 @@ class RpcClient
 	 */
 	protected function success($message, $data = [])
 	{
-		return ['code' => 0, 'message' => $message, 'data' => $data];
+		return ['error' => 0, 'message' => $message, 'data' => $data];
 	}
 
 	/**
@@ -111,7 +110,7 @@ class RpcClient
 	 */
 	protected function error($code, $message, $data = [])
 	{
-		return ['code' => $code, 'message' => $message, 'data' => $data];
+		return ['error' => $code, 'message' => $message, 'data' => $data];
 	}
 
     /**
