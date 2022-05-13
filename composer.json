@@ -1,0 +1,27 @@
+{
+    "name": "growinc/hyrpc-laravel",
+    "description": "Hyperf RPC Client for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Growinc\\HyRpcLaravel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abdul Hafidz A",
+            "email": "aditans88@gmail.com"
+        }
+    ],
+    "require": {
+        "friendsofphp/consul-php-sdk": "^4.2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Growinc\\HyRpcLaravel\\RpcServiceProvider"
+            ]
+        }
+      }
+}
