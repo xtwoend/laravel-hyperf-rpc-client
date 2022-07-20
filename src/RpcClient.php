@@ -72,6 +72,8 @@ class RpcClient
 			$dataResult = (array) json_decode($data,true);
             if(array_key_exists('result', $dataResult)){
 			    return $this->success('ok', $dataResult['result']);
+            }elseif(array_key_exists('data', $dataResult)){
+                return $this->success('ok', $dataResult['data']);
             }elseif(isset($dataResult['error'])){
                 return $this->error($dataResult['error']['code'], $dataResult['error']['message'], $dataResult['error']['data']);
             }
