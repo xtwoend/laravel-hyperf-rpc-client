@@ -75,7 +75,11 @@ class RpcClient
             }elseif(array_key_exists('data', $dataResult)){
                 return $this->success('ok', $dataResult['data']);
             }elseif(isset($dataResult['error'])){
-                return $this->error($dataResult['error']['code'], $dataResult['error']['message'], $dataResult['error']['data']);
+                return $this->error(
+                    $dataResult['error']['code'], 
+                    $dataResult['error']['message'] ?? null,
+                    $dataResult['error']['data'] ?? null
+                );
             }
 		}
 
